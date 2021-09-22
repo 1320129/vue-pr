@@ -17,8 +17,7 @@ export default {
     },
     methods:{
         search:function(){
-            let obj = {complete:false, item:this.inputcont};
-            localStorage.setItem(this.inputcont,JSON.stringify(obj));
+            this.$emit('addTodoItem',this.inputcont);
             this.clearinput();
         },
         clearinput:function(){
