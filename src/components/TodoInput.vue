@@ -5,24 +5,41 @@
       <span class="addContainer" @click="search">
           <i class="fas fa-plus addBtn"></i>
       </span>
+    <Modal v-if="showModal" @close="showModal = false">
+        <h3 slot="header">
+            경고
+            <i class="closeModalBtn fas fa-times" @click="showModal = false"></i>
+            </h3>
+        <div slot="body">빈공간이  있습니다.</div>
+      </Modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/Modal.vue';
+
 export default {
-    data:function(){
+    data(){
         return{
             inputcont:'',
+            showModal: false
         }
     },
     methods:{
-        search:function(){
+        search(){
+        if(this.inputcont !== ''){
             this.$emit('addTodoItem',this.inputcont);
             this.clearinput();
+        }else{
+            this.showModal = !this.showModal;
+        }
         },
-        clearinput:function(){
+        clearinput(){
             this.inputcont = '';
         }
+    },
+    components:{
+        Modal
     }
 }
 </script>
@@ -51,5 +68,8 @@ input:focus{
 .addBtn{
     color:white;
     vertical-align: middle;
+}
+.closeModalBtn {
+    color:#42b983;
 }
 </style>

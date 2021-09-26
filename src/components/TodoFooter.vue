@@ -9,7 +9,7 @@
 <script>
 export default {
     methods:{
-        cleartodo:function(){
+        cleartodo(){
             this.$emit('allCleartodo')
         }
     }

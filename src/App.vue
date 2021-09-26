@@ -16,12 +16,12 @@ import TodoFooter from './components/TodoFooter.vue';
 
 
 export default {
-  data:function(){
+  data(){
     return{
       todoitems:[],
     }
   },
-  created:function(){
+  created(){
       for(let i = 0;localStorage.length > i; i++){
           if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
           this.todoitems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
@@ -29,22 +29,22 @@ export default {
       }
   },
   methods:{
-    addOneItem:function(todoval){
+    addOneItem(todoval){
       console.log(todoval);
       let obj = {complete:false, item:todoval};
       localStorage.setItem(todoval,JSON.stringify(obj));
       this.todoitems.push(obj);
     },
-    removetodoone:function(todoitem,index){
+    removetodoone(todoitem,index){
       localStorage.removeItem(todoitem);
       this.todoitems.splice(index,1);
     },
-    toggletodooneitem:function(todoitem,index){
+    toggletodooneitem(todoitem,index){
       this.todoitems[index].complete = !todoitem.complete;
       localStorage.removeItem(todoitem.item);
       localStorage.setItem(todoitem.item, JSON.stringify(todoitem));
     },
-    cleartodo:function(){
+    cleartodo(){
       this.todoitems = [];
       localStorage.clear();
     }
