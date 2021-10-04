@@ -21,13 +21,6 @@ export default {
       todoitems:[],
     }
   },
-  created(){
-      for(let i = 0;localStorage.length > i; i++){
-          if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
-          this.todoitems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-          }
-      }
-  },
   methods:{
     addOneItem(todoval){
       console.log(todoval);
